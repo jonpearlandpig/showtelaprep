@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# showtela
 
-## Getting Started
+Prep to Wrap.
 
-First, run the development server:
+ShowTELA is a continuity-native operational runtime surface for touring, venues,
+staffing, logistics, deployment coordination, and live production execution.
+
+## Local development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Runtime surface
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The first screen implements:
 
-## Learn More
+- operational feed reprioritized by derived pressure state
+- continuity cards with owner, dependency, authority, relationship, and provenance context
+- derived operational states: `WAITING_ON`, `BLOCKED_BY`, `NEEDS_REVIEW`, `STALE_72_HOURS`,
+  `READY_FOR_APPROVAL`, and `UNRESOLVED_DEPENDENCY`
+- restrained notification examples tied to state transitions, escalation, verification, and stale pressure
+- mobile-first ShowTELA runtime shell with TELAOne design tokens, live-status hero,
+  update digest, TELAwhy summary, next action, team presence, and bottom navigation
+- browser-persisted runtime state with executable actions for adding, verifying, refreshing,
+  escalating, and transitioning operations
 
-To learn more about Next.js, take a look at the following resources:
+## Persistence model
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This v1 stores operational state in browser `localStorage` under `showtela.runtime.v1`.
+It is durable across reloads in the same browser and designed so a server database can
+replace the storage layer later.
