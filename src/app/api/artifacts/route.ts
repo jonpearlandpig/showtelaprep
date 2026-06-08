@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createArtifactIntake } from "@/lib/services/filmakb-service";
+import { createArtifactIntake, ingestScriptArtifact } from "@/lib/services/filmakb-service";
 
 const artifactSchema = z.object({
   productionId: z.string().optional(),
@@ -9,6 +9,27 @@ const artifactSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  const contentType = request.headers.get("content-type") ?? "";
+
+  if (contentType.includes("multipart/form-data")) {
+    const formData = await request.formData();
+    const file = formData.get("file");
+
+    if (!(file instanceof File)) {
+      return Response.json({ error: "Missing screenplay file." }, { status: 400 });
+    }
+
+    const buffer = Buffer.from(await file.arrayBuffer());
+    const result = await ingestScriptArtifact({
+      filename: file.name,
+      contentType: file.type || "application/octet-stream",
+      buffer,
+      productionId: formData.get("productionId")?.toString(),
+    });
+
+    return Response.json(result, { status: 201 });
+  }
+
   const payload = artifactSchema.safeParse(await request.json());
 
   if (!payload.success) {

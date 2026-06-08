@@ -37,13 +37,62 @@ export type ProductionBrief = {
   telawhy: TelaWhy;
 };
 
+export type SourceSceneLink = {
+  artifactId: string;
+  sceneId: string;
+  sceneNumber: string;
+  pageStart?: number;
+  excerpt: string;
+};
+
 export type Artifact = {
   id: string;
   title: string;
   type: string;
   status: "uploaded" | "processing" | "indexed" | "blocked";
   source: string;
+  text?: string;
   updatedAt: string;
+};
+
+export type Scene = {
+  id: string;
+  sceneNumber: string;
+  heading: string;
+  interiorExterior: "INT" | "EXT" | "INT/EXT" | "I/E" | "UNKNOWN";
+  timeOfDay: string;
+  location: string;
+  characters: string[];
+  pages?: string;
+  dependencies: string[];
+  risks: string[];
+  actionCoordination: boolean;
+  source: SourceSceneLink;
+};
+
+export type Character = {
+  id: string;
+  name: string;
+  appearances: number;
+  scenes: string[];
+  scriptReferences: SourceSceneLink[];
+};
+
+export type Location = {
+  id: string;
+  name: string;
+  address?: string;
+  status: "unknown" | "needs_review" | "confirmed";
+  photos: string[];
+  permits: string[];
+  owner?: string;
+  parking?: string;
+  power?: string;
+  notes: string[];
+  scenes: string[];
+  riskScore: number;
+  risks: string[];
+  sourceScenes: SourceSceneLink[];
 };
 
 export type Risk = {
@@ -85,9 +134,42 @@ export type AskTelaAnswer = {
   answer: string;
   confidence: number;
   sources: string[];
+  sourceScenes?: SourceSceneLink[];
   recommendedActions: string[];
   readinessImpact: string;
   telawhy: TelaWhy;
+};
+
+export type ProductionAnalysis = {
+  sceneCount: number;
+  characterCount: number;
+  locationCount: number;
+  actionSceneCount: number;
+  highestRiskLocations: Location[];
+  mostAppearingCharacters: Character[];
+};
+
+export type FilmAkbSnapshot = {
+  artifacts: Artifact[];
+  scenes: Scene[];
+  characters: Character[];
+  locations: Location[];
+  productionBrief: ProductionBrief;
+  searchIndex: SearchResult[];
+  telawhy: TelaWhy[];
+  analysis: ProductionAnalysis;
+  updatedAt: string;
+};
+
+export type ScriptIngestionResult = {
+  artifact: Artifact;
+  scenes: Scene[];
+  characters: Character[];
+  locations: Location[];
+  productionBrief: ProductionBrief;
+  searchIndex: SearchResult[];
+  telawhy: TelaWhy[];
+  analysis: ProductionAnalysis;
 };
 
 export const NOT_FOUND_IN_FILMAKB = "Not found in current FilmAKB.";
