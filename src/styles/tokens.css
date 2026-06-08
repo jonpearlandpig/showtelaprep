@@ -1,0 +1,184 @@
+/* ShowTELA / TELAOne design tokens. Fonts are provided through next/font in layout.tsx. */
+
+:root {
+  --color-void: #0a0e17;
+  --color-navy: #0d1b2a;
+  --color-navy-raised: #112236;
+  --color-navy-border: rgba(196, 151, 58, 0.12);
+  --color-navy-border-active: rgba(196, 151, 58, 0.35);
+  --color-overlay-dark: rgba(10, 14, 23, 0.85);
+  --color-overlay-light: rgba(10, 14, 23, 0.2);
+  --color-glass: rgba(13, 27, 42, 0.72);
+  --color-glass-border: rgba(234, 224, 210, 0.08);
+
+  --color-cream: #eae0d2;
+  --color-cream-muted: #9a8f80;
+  --color-cream-faint: #5a5348;
+  --color-white: #ffffff;
+
+  --color-gold: #c4973a;
+  --color-gold-bright: #d4a84b;
+  --color-gold-dim: #8a6a28;
+  --color-gold-bg: rgba(196, 151, 58, 0.12);
+
+  --color-status-green: #4caf6e;
+  --color-status-green-bg: rgba(76, 175, 110, 0.15);
+  --color-status-amber: #e09840;
+  --color-status-amber-bg: rgba(224, 152, 64, 0.15);
+  --color-status-red: #c0392b;
+  --color-status-red-bg: rgba(192, 57, 43, 0.2);
+  --color-status-live: #8b1a1a;
+  --color-status-blue: #4a7fbf;
+  --color-status-blue-bg: rgba(74, 127, 191, 0.15);
+  --color-status-purple: #7a5cb8;
+  --color-status-purple-bg: rgba(122, 92, 184, 0.15);
+
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: var(--font-dm-mono), "Courier New", monospace;
+
+  --text-hero: clamp(32px, 8vw, 40px);
+  --text-h1: clamp(22px, 6vw, 28px);
+  --text-h2: 20px;
+  --text-h3: 17px;
+  --text-body: 15px;
+  --text-small: 13px;
+  --text-label: 11px;
+  --text-mono: 12px;
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --tracking-label: 0.12em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-screen-edge: 16px;
+  --space-card: 20px;
+  --space-card-sm: 14px;
+  --space-section: 24px;
+  --space-item: 12px;
+
+  --touch-min: 44px;
+  --nav-height: 83px;
+  --nav-safe-padding: env(safe-area-inset-bottom, 16px);
+  --header-height: 60px;
+
+  --radius-sm: 6px;
+  --radius-card: 16px;
+  --radius-card-lg: 20px;
+  --radius-full: 9999px;
+
+  --duration-instant: 80ms;
+  --duration-fast: 150ms;
+  --duration-base: 280ms;
+  --duration-slow: 420ms;
+  --duration-reveal: 600ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+
+  --z-base: 0;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-nav: 400;
+  --z-toast: 500;
+
+  --gradient-hero: linear-gradient(
+    to bottom,
+    rgba(10, 14, 23, 0.2) 0%,
+    rgba(10, 14, 23, 0.55) 50%,
+    rgba(10, 14, 23, 0.9) 100%
+  );
+  --gradient-card-glow: linear-gradient(
+    135deg,
+    rgba(196, 151, 58, 0.06) 0%,
+    rgba(13, 27, 42, 0) 60%
+  );
+}
+
+.tela-label {
+  color: var(--color-cream-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.tela-display {
+  color: var(--color-cream);
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.1;
+}
+
+.tela-card {
+  background: var(--color-navy);
+  border: 1px solid var(--color-navy-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-card);
+}
+
+.tela-card-glow {
+  background: var(--color-navy);
+  background-image: var(--gradient-card-glow);
+  border: 1px solid var(--color-navy-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-card);
+}
+
+.tela-status-dot {
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  height: 8px;
+  width: 8px;
+}
+
+.tela-badge {
+  align-items: center;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-label);
+  padding: 4px 10px;
+  text-transform: uppercase;
+}
+
+.tela-badge--live {
+  background: var(--color-status-live);
+  color: var(--color-white);
+}
+
+.tela-badge--green {
+  background: var(--color-status-green-bg);
+  color: var(--color-status-green);
+}
+
+.tela-badge--amber {
+  background: var(--color-status-amber-bg);
+  color: var(--color-status-amber);
+}
+
+.tela-badge--red {
+  background: var(--color-status-red-bg);
+  color: var(--color-status-red);
+}
